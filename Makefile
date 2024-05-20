@@ -34,4 +34,10 @@ proto:
     --go-grpc_out=pb --go-grpc_opt=paths=source_relative \
     proto/*.proto
 
-.PHONY: postgres mysql createdb dropdb migrateup migratedown sqlc server proto mock
+evans:
+	evans --host localhost --port 9090 -r repl
+	# package pb
+	# service SimpleBank
+	# call CreateUser
+	
+.PHONY: postgres mysql createdb dropdb migrateup migratedown sqlc server proto mock evans
