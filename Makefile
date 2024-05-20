@@ -28,4 +28,10 @@ server:
 mock:
 	mockgen -destination db/mock/store.go example.com/m/v2/db/sqlc Store
 
-.PHONY: postgres mysql createdb dropdb migrateup migratedown sqlc server
+proto:
+	rm -f pb/*.go
+	protoc --proto_path=proto --go_out=pb --go_opt=paths=source_relative \
+    --go-grpc_out=pb --go-grpc_opt=paths=source_relative \
+    proto/*.proto
+
+.PHONY: postgres mysql createdb dropdb migrateup migratedown sqlc server proto mock
