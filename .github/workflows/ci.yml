@@ -21,6 +21,7 @@ jobs:
             env:
               POSTGRES_USER: root
               POSTGRES_PASSWORD: secret
+              POSTGRES_DB: simple_bank
             options: >-
               --health-cmd pg_isready
               --health-interval 10s
@@ -35,6 +36,15 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.24'
+    
+    - name: Install golang-migrate
+      run: 
+        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.18.2/migrate.linux-amd64.tar.gz | tar xvz
+        sudo mv migrate /usr/bin/
+        which migrate
+          
+    - name: Run migraion
+      run: make migrationup
 
     - name: Test
       run: make test
