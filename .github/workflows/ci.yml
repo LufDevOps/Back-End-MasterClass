@@ -14,9 +14,10 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+
     services:
-          postgres: 
-            image: postgres12
+        postgres: 
+            image: postgres:12
             env:
               POSTGRES_USER: root
               POSTGRES_PASSWORD: secret
