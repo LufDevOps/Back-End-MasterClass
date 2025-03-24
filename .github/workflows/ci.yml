@@ -1,3 +1,6 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
 name: Go
 
 on:
@@ -41,12 +44,7 @@ jobs:
         sudo mv migrate /usr/bin/
         migrate --version
 
-    - name: Install sql-migrate
-      run: |
-        go install github.com/rubenv/sql-migrate/...@latest
-        echo "$HOME/go/bin" >> $GITHUB_PATH
-
-    - name: Run migration
+    - name: Run migraion
       run: make migrateup
 
     - name: Test
