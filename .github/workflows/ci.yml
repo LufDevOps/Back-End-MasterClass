@@ -45,7 +45,7 @@ jobs:
         migrate --version
 
     - name: Run migraion
-      run: make migrationup
+      run: make migrateup
 
     - name: Test
       run: make test
