@@ -21,6 +21,15 @@ CREATE TABLE "transfers" (
   "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
+CREATE TABLE "users" (
+  "username" varchar PRIMARY KEY,
+  "hashed_password" varchar NOT NULL,
+  "full_name" varchar NOT NULL,
+  "email" varchar NOT NULL UNIQUE,
+  "password_changed_at" timestamptz NOT NULL DEFAULT (now()),
+  "created_at" timestamptz NOT NULL DEFAULT (now())
+);
+
 ALTER TABLE "entries" ADD FOREIGN KEY ("account_id") REFERENCES "accounts" ("id");
 
 ALTER TABLE "transfers" ADD FOREIGN KEY ("from_account_id") REFERENCES "accounts" ("id");
